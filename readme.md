@@ -1,5 +1,7 @@
 # Vanilla Javascript Synthesizer project
 
+Site link: https://simonerocutto.github.io/vanilla-js-synthesizer/
+
 This project is my first attempt at working with javascript audio context and oscillators.
 
 This single page web app allows you to play a synth using your keyboard (**a** to **ù** keys).
