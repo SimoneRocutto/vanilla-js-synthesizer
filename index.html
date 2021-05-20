@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Vanilla Javascript Synthesizer</h1>
+    <div class="controls">
+        <label class="control" for="soundwave"><span>Soundwave</span>
+        <select name="soundwave" id="soundwave">
+          <option value="sine">Sine</option>
+          <option value="square">Square</option>
+          <option value="sawtooth">Saw</option>
+          <option value="triangle">Triangle</option>
+        </select>
+      </label>
+        <label class="control" for="attack"><span>Attack</span>
+        <input
+          name="attack"
+          id="attack"
+          type="range"
+          min="0"
+          max="1"
+          value="0.2"
+          step="0.1"
+        />
+        </label>
+        <label class="control" for="decay"><span>Decay</span>
+        <input
+          name="decay"
+          id="decay"
+          type="range"
+          min="0.1"
+          max="60"
+          value="2"
+          step="0.1"
+        />
+      </label>
+        <label class="control" for="lfo-checkbox"><span>LFO</span>
+        <input type="checkbox" id="lfo-checkbox">
+        <input
+        name="lfo"
+        id="lfo"
+        type="range"
+        min="1"
+        max="32"
+        value="8"
+        step="1"
+        />
+      </label>
+
+      </div>
+
+    <div class="piano main-piano">
+      <div id="C" class="white big-white"></div>
+      <div id="C#" class="black big-black"></div>
+      <div id="D" class="white big-white"></div>
+      <div id="Eb" class="black big-black"></div>
+      <div id="E" class="white big-white"></div>
+      <div id="F" class="white big-white"></div>
+      <div id="F#" class="black big-black"></div>
+      <div id="G" class="white big-white"></div>
+      <div id="G#" class="black big-black"></div>
+      <div id="A" class="white big-white"></div>
+      <div id="Bb" class="black big-black"></div>
+      <div id="B" class="white big-white"></div>
+      <div id="C+" class="white big-white"></div>
+      <div id="C#+" class="black big-black"></div>
+      <div id="D+" class="white big-white"></div>
+      <div id="Eb+" class="black big-black"></div>
+      <div id="E+" class="white big-white"></div>
+      <div id="F+" class="white big-white"></div>
+      <div id="F#+" class="black big-black"></div>
+      <div id="G+" class="white big-white"></div>
+    </div>
+    <div class="octave-box">
+      <div class="piano piano-roll">
+        <div octave="0" class="white roll-white A"></div>
+        <div octave="0" class="black roll-black Bb"></div>
+        <div octave="0" class="white roll-white B"></div>
+        <div octave="1" class="white roll-white C"></div>
+        <div octave="1" class="black roll-black C#"></div>
+        <div octave="1" class="white roll-white D"></div>
+        <div octave="1" class="black roll-black Eb"></div>
+        <div octave="1" class="white roll-white E"></div>
+        <div octave="1" class="white roll-white F"></div>
+        <div octave="1" class="black roll-black F#"></div>
+        <div octave="1" class="white roll-white G"></div>
+        <div octave="1" class="black roll-black G#"></div>
+        <div octave="1" class="white roll-white A"></div>
+        <div octave="1" class="black roll-black Bb"></div>
+        <div octave="1" class="white roll-white B"></div>
+        <div octave="2" class="white roll-white C"></div>
+        <div octave="2" class="black roll-black C#"></div>
+        <div octave="2" class="white roll-white D"></div>
+        <div octave="2" class="black roll-black Eb"></div>
+        <div octave="2" class="white roll-white E"></div>
+        <div octave="2" class="white roll-white F"></div>
+        <div octave="2" class="black roll-black F#"></div>
+        <div octave="2" class="white roll-white G"></div>
+        <div octave="2" class="black roll-black G#"></div>
+        <div octave="2" class="white roll-white A"></div>
+        <div octave="2" class="black roll-black Bb"></div>
+        <div octave="2" class="white roll-white B"></div>
+        <div octave="3" class="white roll-white C"></div>
+        <div octave="3" class="black roll-black C#"></div>
+        <div octave="3" class="white roll-white D"></div>
+        <div octave="3" class="black roll-black Eb"></div>
+        <div octave="3" class="white roll-white E"></div>
+        <div octave="3" class="white roll-white F"></div>
+        <div octave="3" class="black roll-black F#"></div>
+        <div octave="3" class="white roll-white G"></div>
+        <div octave="3" class="black roll-black G#"></div>
+        <div octave="3" class="white roll-white A"></div>
+        <div octave="3" class="black roll-black Bb"></div>
+        <div octave="3" class="white roll-white B"></div>
+        <div octave="4" class="white roll-white C"></div>
+        <div octave="4" class="black roll-black C#"></div>
+        <div octave="4" class="white roll-white D"></div>
+        <div octave="4" class="black roll-black Eb"></div>
+        <div octave="4" class="white roll-white E"></div>
+        <div octave="4" class="white roll-white F"></div>
+        <div octave="4" class="black roll-black F#"></div>
+        <div octave="4" class="white roll-white G"></div>
+        <div octave="4" class="black roll-black G#"></div>
+        <div octave="4" class="white roll-white A"></div>
+        <div octave="4" class="black roll-black Bb"></div>
+        <div octave="4" class="white roll-white B"></div>
+        <div octave="5" class="white roll-white C"></div>
+        <div octave="5" class="black roll-black C#"></div>
+        <div octave="5" class="white roll-white D"></div>
+        <div octave="5" class="black roll-black Eb"></div>
+        <div octave="5" class="white roll-white E"></div>
+        <div octave="5" class="white roll-white F"></div>
+        <div octave="5" class="black roll-black F#"></div>
+        <div octave="5" class="white roll-white G"></div>
+        <div octave="5" class="black roll-black G#"></div>
+        <div octave="5" class="white roll-white A"></div>
+        <div octave="5" class="black roll-black Bb"></div>
+        <div octave="5" class="white roll-white B"></div>
+        <div octave="6" class="white roll-white C"></div>
+        <div octave="6" class="black roll-black C#"></div>
+        <div octave="6" class="white roll-white D"></div>
+        <div octave="6" class="black roll-black Eb"></div>
+        <div octave="6" class="white roll-white E"></div>
+        <div octave="6" class="white roll-white F"></div>
+        <div octave="6" class="black roll-black F#"></div>
+        <div octave="6" class="white roll-white G"></div>
+        <div octave="6" class="black roll-black G#"></div>
+        <div octave="6" class="white roll-white A"></div>
+        <div octave="6" class="black roll-black Bb"></div>
+        <div octave="6" class="white roll-white B"></div>
+        <div octave="7" class="white roll-white C"></div>
+        <div octave="7" class="black roll-black C#"></div>
+        <div octave="7" class="white roll-white D"></div>
+        <div octave="7" class="black roll-black Eb"></div>
+        <div octave="7" class="white roll-white E"></div>
+        <div octave="7" class="white roll-white F"></div>
+        <div octave="7" class="black roll-black F#"></div>
+        <div octave="7" class="white roll-white G"></div>
+        <div octave="7" class="black roll-black G#"></div>
+        <div octave="7" class="white roll-white A"></div>
+        <div octave="7" class="black roll-black Bb"></div>
+        <div octave="7" class="white roll-white B"></div>
+        <div octave="8" class="white roll-white C"></div>
+      </div>
+      <div class="octave-box">
+        <p class="octave-line">Octave: <span id="octave">4</span></p>
+      </div>
+    </div>
+    <p class="explanation">Play notes with your keyboard. Change octave with Z and X.</p>
+    <script src="script.js" type="module" async defer></script>
+  </body>
+</html>
