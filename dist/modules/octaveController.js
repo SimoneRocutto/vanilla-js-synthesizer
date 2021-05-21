@@ -1,9 +1,9 @@
 import { removeKeysSelection, assignSelectedKeys } from './functions/index.js';
 export { octave };
-var octave = 4;
-var shownOctave = document.getElementById('octave');
+let octave = 4;
+const shownOctave = document.getElementById('octave');
 assignSelectedKeys(octave);
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', (event) => {
     switch (event.code) {
         case ('KeyZ'):
             if (octave <= -1)

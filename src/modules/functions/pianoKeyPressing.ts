@@ -1,6 +1,6 @@
 export { pressPianoKey, releasePianoKey };
 
-function pressPianoKey(key) {
+function pressPianoKey(key: HTMLDivElement): void {
     if (key.classList.contains('white')) {
         key.classList.add('pressed-white');
     }
@@ -9,7 +9,7 @@ function pressPianoKey(key) {
     }
 }
 
-function releasePianoKey(key) {
+function releasePianoKey(key: HTMLDivElement): void {
     key.classList.remove('pressed-white');
     key.classList.remove('pressed-black');
 }

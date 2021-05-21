@@ -2,31 +2,28 @@ import keysInfo from './modules/keysInfo.js';
 import { octave } from './modules/octaveController.js';
 import { oscConfig } from './modules/oscControls.js';
 import { playNote, pressPianoKey, releasePianoKey, calcFrequency } from './modules/functions/index.js';
-var AudioContext = window.AudioContext
+const AudioContext = window.AudioContext
     || window.webkitAudioContext; // as any used to resolve webkitAudioContext problem
-var audioContext = new AudioContext();
+const audioContext = new AudioContext();
 // keyboard player
 // remembers which keys are currently pressed
-var pressedKeys = [];
-document.addEventListener('keydown', function (downEvent) {
+let pressedKeys = [];
+document.addEventListener('keydown', (downEvent) => {
     // prevents triggering the same note more than once while holding the key
-    if (pressedKeys[downEvent.code])
+    if (pressedKeys.includes(downEvent.code))
         return;
-    pressedKeys[downEvent.code] = true;
+    pressedKeys.push(downEvent.code);
     if (keysInfo[downEvent.code]) {
-        var key_1 = document.getElementById(keysInfo[downEvent.code].note);
-        pressPianoKey(key_1);
-        var frequency = calcFrequency(keysInfo[downEvent.code].frequency, octave);
-        var osc_1 = playNote(audioContext, frequency, oscConfig);
-        document.addEventListener('keyup', function (upEvent) {
+        const key = document.getElementById(keysInfo[downEvent.code].note);
+        pressPianoKey(key);
+        const frequency = calcFrequency(keysInfo[downEvent.code].frequency, octave);
+        const osc = playNote(audioContext, frequency, oscConfig);
+        document.addEventListener('keyup', upEvent => {
             if (upEvent.code === downEvent.code) {
-                osc_1.stop();
-                releasePianoKey(key_1);
-                pressedKeys[downEvent.code] = false;
+                osc.stop();
+                releasePianoKey(key);
+                pressedKeys = pressedKeys.filter(keyCode => keyCode !== downEvent.code);
             }
         });
     }
-});
-document.addEventListener('keydown', function (e) {
-    console.log("ayy");
 });

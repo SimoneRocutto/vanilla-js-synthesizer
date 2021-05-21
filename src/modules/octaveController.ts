@@ -1,10 +1,10 @@
 import { removeKeysSelection, assignSelectedKeys } from './functions/index.js';
 export { octave };
-let octave = 4;
-const shownOctave = document.getElementById('octave');
+let octave: number = 4;
+const shownOctave: HTMLSpanElement = document.getElementById('octave');
 assignSelectedKeys(octave);
 
-document.addEventListener('keydown', event => {
+document.addEventListener('keydown', (event): void => {
     switch (event.code) {
         case ('KeyZ'):
             if (octave <= -1) return;

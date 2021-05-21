@@ -5,13 +5,13 @@
  * @param {object} oscConfig 
  * @returns The oscillator.
  */
-export function playNote(audioContext, frequency, oscConfig) {
+export function playNote(audioContext: AudioContext, frequency: number, oscConfig: OscConfigInterface) {
     // oscillator creation & setup
-    const osc = audioContext.createOscillator();
+    const osc: OscillatorNode = audioContext.createOscillator();
     osc.type = oscConfig.waveType;
     osc.frequency.value = frequency;
     // envelope creation
-    let envelope = audioContext.createGain();
+    let envelope: GainNode = audioContext.createGain();
     envelope.gain.cancelScheduledValues(audioContext.currentTime);
     // the wave initial value is set to 0
     envelope.gain.setValueAtTime(0, audioContext.currentTime);
@@ -21,10 +21,10 @@ export function playNote(audioContext, frequency, oscConfig) {
     // LFO & connecting parts
     if (oscConfig.lfo) {
         // the amp controls the volume
-        const amp = audioContext.createGain();
+        const amp: GainNode = audioContext.createGain();
         amp.gain.setValueAtTime(1, audioContext.currentTime);    
         // LFO creation & setup
-        const lfo = audioContext.createOscillator();
+        const lfo: OscillatorNode = audioContext.createOscillator();
         lfo.type = 'sine';
         lfo.frequency.value = oscConfig.lfoFrequency;
         // the LFO is mapped to the amp

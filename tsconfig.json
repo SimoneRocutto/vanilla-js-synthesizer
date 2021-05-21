@@ -3,7 +3,7 @@
         "rootDir": "./src",
         "outDir": "./dist",
         "module": "ES6",
-        "target": "es5",
+        "target": "es2016",
         "jsx": "preserve",
         "strictFunctionTypes": true,
         "sourceMap": false

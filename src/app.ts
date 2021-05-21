@@ -5,33 +5,29 @@ import { playNote, pressPianoKey, releasePianoKey, calcFrequency } from './modul
 
 const AudioContext = window.AudioContext
  || (window as any).webkitAudioContext; // as any used to resolve webkitAudioContext problem
-const audioContext = new AudioContext();
+const audioContext: AudioContext = new AudioContext();
 
 // keyboard player
 
 // remembers which keys are currently pressed
-const pressedKeys = [];
+let pressedKeys: string[] = [];
 
-document.addEventListener('keydown', downEvent => {
+document.addEventListener('keydown', (downEvent): void => {
     // prevents triggering the same note more than once while holding the key
-    if (pressedKeys[downEvent.code]) return;
-    pressedKeys[downEvent.code] = true;
+    if (pressedKeys.includes(downEvent.code)) return;
+    pressedKeys.push(downEvent.code);
 
     if (keysInfo[downEvent.code]) {
-        const key = document.getElementById(keysInfo[downEvent.code].note);
+        const key: HTMLDivElement = document.getElementById(keysInfo[downEvent.code].note) as HTMLDivElement;
         pressPianoKey(key);
-        const frequency = calcFrequency(keysInfo[downEvent.code].frequency, octave);
+        const frequency: number = calcFrequency(keysInfo[downEvent.code].frequency, octave);
         const osc = playNote(audioContext, frequency, oscConfig);
         document.addEventListener('keyup', upEvent => {
             if (upEvent.code === downEvent.code) {
                 osc.stop();
                 releasePianoKey(key);
-                pressedKeys[downEvent.code] = false;
+                pressedKeys = pressedKeys.filter(keyCode => keyCode !== downEvent.code);
             }
         });
     }
 });
-
-document.addEventListener('keydown', e => {
-    console.log("ayy");
-})
