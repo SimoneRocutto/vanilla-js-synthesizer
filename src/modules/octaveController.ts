@@ -17,5 +17,5 @@ document.addEventListener('keydown', event => {
     }
     removeKeysSelection();
     assignSelectedKeys(octave);
-    shownOctave.innerText = octave;
+    // shownOctave.innerText = octave;
 });
